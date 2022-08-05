@@ -9,12 +9,14 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import com.example.project009.DAO.UserRepository;
 import com.example.project009.daoCLass.User;
 
 @SpringBootApplication
-public class Project009Application {
+public class Project009Application extends SpringBootServletInitializer{
 	@Autowired
 	UserRepository userRepo;
 	
@@ -29,6 +31,11 @@ public class Project009Application {
 		System.out.println(userRepo.findAll());		
 				
 				
+	}
+	
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(Project009Application.class);
 	}
 
 	public static void main(String[] args) {
